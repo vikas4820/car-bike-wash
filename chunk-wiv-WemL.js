@@ -1,0 +1,1 @@
+import {g,S as Ve,a3 as sh,a4 as M}from'./main-R53UBK3X.js';function w(t){t||(t=g(Ve));let i=new M(e=>{if(t.destroyed){e.next();return}return t.onDestroy(e.next.bind(e))});return e=>e.pipe(sh(i))}export{w};

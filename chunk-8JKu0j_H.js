@@ -1,0 +1,1 @@
+import {U,L}from'./main-R53UBK3X.js';var a=e=>{let t=String(e.value??"");return t?/[A-Z]/.test(t)&&/[a-z]/.test(t)&&/\d/.test(t)&&/[^A-Za-z0-9]/.test(t)?null:{strongPassword:true}:null};function l$1(e,t){return s=>{let n=s.get(e),r=s.get(t);return !n||!r||n.value===r.value?null:(r.setErrors(U(L({},r.errors),{mismatch:true})),{mismatch:true})}}export{a,l$1 as l};
