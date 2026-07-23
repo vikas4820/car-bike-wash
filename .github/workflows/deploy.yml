@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Build Angular app
-        run: npm run build -- --base-href "/shinecraft-angular/"
+        run: npm run build -- --base-href "/car-bike-wash/"
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
