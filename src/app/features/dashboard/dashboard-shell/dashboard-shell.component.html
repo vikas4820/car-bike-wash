@@ -1,0 +1,19 @@
+<div class="dashboard-layout">
+  <aside class="dashboard-sidebar" [class.open]="mobileNavOpen()">
+    <a routerLink="/" class="dashboard-brand"><span class="brand-glyph"><i class="fa-solid fa-droplet"></i></span><span><strong>SHINECRAFT</strong><small>Control centre</small></span></a>
+    <div class="profile-mini"><span>{{ auth.currentUser()?.name?.charAt(0) }}</span><div><strong>{{ auth.currentUser()?.name }}</strong><small>{{ auth.currentUser()?.role === 'admin' ? 'Administrator' : 'Customer' }}</small></div></div>
+    <nav>
+      @for (item of navigation(); track item.link) {
+        <a [routerLink]="item.link" routerLinkActive="active" (click)="mobileNavOpen.set(false)"><i [class]="item.icon"></i><span>{{ item.label }}</span></a>
+      }
+      <span class="nav-divider"></span>
+      <a routerLink="/"><i class="fa-solid fa-arrow-up-right-from-square"></i><span>Public website</span></a>
+    </nav>
+    <button class="logout-button" type="button" (click)="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Log out</span></button>
+  </aside>
+  @if (mobileNavOpen()) { <button class="sidebar-backdrop" type="button" aria-label="Close navigation" (click)="mobileNavOpen.set(false)"></button> }
+  <section class="dashboard-main">
+    <header class="dashboard-topbar"><button class="mobile-menu" type="button" (click)="mobileNavOpen.set(true)" aria-label="Open navigation"><i class="fa-solid fa-bars"></i></button><div><small>SHINECRAFT</small><strong>{{ auth.currentUser()?.role === 'admin' ? 'Admin dashboard' : 'Customer dashboard' }}</strong></div><div class="topbar-actions"><button class="notification-button" type="button" aria-label="Notifications"><i class="fa-regular fa-bell"></i><span></span></button><app-theme-toggle /></div></header>
+    <router-outlet />
+  </section>
+</div>

@@ -1,0 +1,5 @@
+.not-found { min-height: 100vh; display: grid; place-content: center; justify-items: center; padding: 30px; background: var(--brand-dark); color: #fff; text-align: center; }
+.not-found > span { color: var(--lime); font-size: 12px; letter-spacing: .2em; }
+.not-found h1 { margin: 20px 0; font-family: var(--display); font-size: clamp(50px, 8vw, 100px); line-height: .9; letter-spacing: -.07em; }
+.not-found p { max-width: 560px; color: rgba(255,255,255,.6); }
+.not-found a { display: inline-flex; align-items: center; gap: 12px; min-height: 52px; margin-top: 20px; padding: 0 22px; border-radius: 999px; background: var(--lime); color: var(--brand-dark); font-weight: 800; }

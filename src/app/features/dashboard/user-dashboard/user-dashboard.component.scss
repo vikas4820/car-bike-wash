@@ -1,0 +1,14 @@
+@use '../dashboard-content';
+.appointment-card { display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface-soft); }
+.appointment-date { display: grid; place-items: center; width: 66px; height: 72px; border-radius: 16px; background: var(--brand-dark); color: #fff; line-height: 1; }
+.appointment-date strong { font-family: var(--display); font-size: 25px; }
+.appointment-date span { margin-top: 5px; color: var(--lime); font-size: 10px; letter-spacing: .1em; }
+.appointment-card h3 { margin: 0 0 6px; font-family: var(--display); font-size: 18px; }
+.appointment-card p { margin: 2px 0; color: var(--muted); font-size: 12px; }
+.appointment-card p i { width: 18px; }
+.appointment-card button { background: transparent; color: var(--muted); }
+.profile-panel { text-align: center; }
+.profile-panel .panel-head { text-align: left; }
+.profile-avatar { display: grid; place-items: center; width: 82px; height: 82px; margin: 25px auto 14px; border-radius: 50%; background: var(--lime); color: var(--brand-dark); font-family: var(--display); font-size: 30px; font-weight: 800; }
+.profile-panel h3 { margin: 0; font-family: var(--display); }
+.profile-panel p { margin: 5px 0; color: var(--muted); font-size: 13px; }

@@ -1,0 +1,9 @@
+<div class="feedback-stack" aria-live="polite" aria-atomic="false">
+  @for (item of feedback.messages(); track item.id) {
+    <article class="feedback-item" [class]="'feedback-item ' + item.type">
+      <i [class]="item.type === 'success' ? 'fa-solid fa-circle-check' : item.type === 'warning' ? 'fa-solid fa-triangle-exclamation' : item.type === 'info' ? 'fa-solid fa-circle-info' : 'fa-solid fa-circle-exclamation'"></i>
+      <span>{{ item.message }}</span>
+      <button type="button" (click)="feedback.dismiss(item.id)" aria-label="Dismiss notification"><i class="fa-solid fa-xmark"></i></button>
+    </article>
+  }
+</div>

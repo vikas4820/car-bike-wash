@@ -1,0 +1,24 @@
+@use '../dashboard-content';
+.admin-metrics { grid-template-columns: repeat(4, 1fr); }
+.admin-grid { grid-template-columns: 1.5fr .7fr; }
+.bar-chart { height: 250px; display: grid; grid-template-columns: repeat(7, 1fr); align-items: end; gap: 13px; padding-top: 18px; }
+.bar-chart > div { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 8px; }
+.bar-chart span { width: min(100%, 34px); min-height: 8px; border-radius: 8px 8px 3px 3px; background: linear-gradient(to top, var(--lime-dark), var(--lime)); }
+.bar-chart small { color: var(--muted); font-size: 10px; }
+.activity-panel ul { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+.activity-panel li { display: flex; align-items: center; gap: 12px; }
+.activity-panel li > span { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; background: var(--surface-soft); color: var(--lime-dark); }
+.activity-panel strong, .activity-panel small { display: block; }
+.activity-panel strong { font-size: 12px; }
+.activity-panel small { color: var(--muted); font-size: 10px; }
+.users-panel { margin-top: 18px; }
+.users-panel .panel-head > span { color: var(--muted); font-size: 12px; }
+.user-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.user-grid article { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 15px; }
+.user-grid article > span { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--brand-dark); color: var(--lime); font-weight: 800; }
+.user-grid strong, .user-grid small { display: block; }
+.user-grid strong { font-size: 13px; }
+.user-grid small { color: var(--muted); font-size: 10px; }
+.user-grid em { padding: 5px 9px; border-radius: 999px; background: var(--surface-soft); color: var(--muted); font-size: 9px; font-style: normal; text-transform: uppercase; }
+@media (max-width: 1200px) { .admin-metrics { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 750px) { .admin-metrics, .user-grid { grid-template-columns: 1fr; } .admin-grid { grid-template-columns: 1fr; } }

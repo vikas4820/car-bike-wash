@@ -1,0 +1,38 @@
+{
+  "name": "shinecraft-angular",
+  "version": "2.0.0",
+  "private": true,
+  "description": "ShineCraft Angular 22 website with GSAP animations, JWT API authentication and role-based dashboards.",
+  "engines": {
+    "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "dependencies": {
+    "@angular/common": "^22.0.7",
+    "@angular/compiler": "^22.0.7",
+    "@angular/core": "^22.0.7",
+    "@angular/forms": "^22.0.7",
+    "@angular/platform-browser": "^22.0.7",
+    "@angular/router": "^22.0.7",
+    "@auth0/angular-jwt": "^5.2.0",
+    "@fortawesome/fontawesome-free": "^7.0.1",
+    "bootstrap": "^5.3.8",
+    "gsap": "^3.13.0",
+    "rxjs": "~7.8.2",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.0.7",
+    "@angular/cli": "^22.0.7",
+    "@angular/compiler-cli": "^22.0.7",
+    "jsdom": "^27.1.0",
+    "typescript": "~6.0.2",
+    "vitest": "^4.0.8"
+  }
+}

@@ -1,0 +1,11 @@
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { finalize } from 'rxjs';
+import { ServicePlan } from '../../../core/models/dashboard.model';
+import { ApiService } from '../../../core/services/api.service';
+import { ErrorService } from '../../../core/services/error.service';
+import { FormErrorComponent } from '../../../shared/components/form-error/form-error.component';
+
+@Component({ selector: 'app-services', standalone: true, imports: [ReactiveFormsModule, FormErrorComponent], templateUrl: './services.component.html', styleUrls: ['./services.component.scss'], changeDetection: ChangeDetectionStrategy.OnPush })
+export class ServicesComponent { private readonly fb = inject(FormBuilder); private readonly api = inject(ApiService); private readonly feedback = inject(ErrorService); private readonly destroyRef = inject(DestroyRef); readonly services = signal<ServicePlan[]>([]); readonly showForm = signal(false); readonly submitting = signal(false); readonly form = this.fb.nonNullable.group({ name: ['', Validators.required], category: ['', Validators.required], durationMinutes: [60, [Validators.required, Validators.min(15)]], carPrice: [0, [Validators.required, Validators.min(0)]], bikePrice: [0, [Validators.required, Validators.min(0)]], description: ['', Validators.required], active: [true] }); constructor() { this.api.get<ServicePlan[]>('services').pipe(takeUntilDestroyed(this.destroyRef)).subscribe(rows => this.services.set(rows)); } submit(): void { this.form.markAllAsTouched(); if (this.form.invalid || this.submitting()) return; this.submitting.set(true); const payload = this.form.getRawValue(); this.api.post<ServicePlan>('services', payload).pipe(finalize(() => this.submitting.set(false))).subscribe(row => { const service = { ...payload, id: row.id || crypto.randomUUID() }; this.services.update(rows => [...rows, service]); this.feedback.success('Service created.'); this.showForm.set(false); }); } toggle(item: ServicePlan): void { item.active = !item.active; this.services.update(rows => [...rows]); this.api.patch(`services/${item.id}`, { active: item.active }).subscribe(); } }

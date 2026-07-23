@@ -1,0 +1,9 @@
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ServicePlan } from '../../../core/models/dashboard.model';
+import { ApiService } from '../../../core/services/api.service';
+import { ErrorService } from '../../../core/services/error.service';
+
+@Component({ selector: 'app-packages', standalone: true, imports: [ReactiveFormsModule], templateUrl: './packages.component.html', styleUrls: ['./packages.component.scss'], changeDetection: ChangeDetectionStrategy.OnPush })
+export class PackagesComponent { private readonly fb = inject(FormBuilder); private readonly api = inject(ApiService); private readonly feedback = inject(ErrorService); private readonly destroyRef = inject(DestroyRef); readonly packages = signal<ServicePlan[]>([]); readonly showForm = signal(false); readonly form = this.fb.nonNullable.group({ name: ['', Validators.required], carPrice: [0, Validators.required], bikePrice: [0, Validators.required], description: ['', Validators.required], featured: [false], features: ['Exterior wash\nWheel cleaning\nGlass cleaning'] }); constructor() { this.api.get<ServicePlan[]>('packages').pipe(takeUntilDestroyed(this.destroyRef)).subscribe(rows => this.packages.set(rows)); } save(): void { this.form.markAllAsTouched(); if (this.form.invalid) return; const value = this.form.getRawValue(); const row: ServicePlan = { id: crypto.randomUUID(), name: value.name, category: 'Package', durationMinutes: 120, carPrice: value.carPrice, bikePrice: value.bikePrice, description: value.description, active: true }; this.api.post<ServicePlan>('packages', value).subscribe(() => { this.packages.update(rows => [...rows, row]); this.feedback.success('Package created.'); this.showForm.set(false); }); } }

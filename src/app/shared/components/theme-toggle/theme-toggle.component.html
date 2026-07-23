@@ -1,0 +1,8 @@
+<button
+  class="theme-toggle"
+  type="button"
+  (click)="themeService.toggle()"
+  [attr.aria-label]="themeService.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'"
+  [title]="themeService.theme() === 'dark' ? 'Light theme' : 'Dark theme'">
+  <i [class]="themeService.theme() === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
+</button>

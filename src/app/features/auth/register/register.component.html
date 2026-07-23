@@ -1,0 +1,22 @@
+<div class="auth-page">
+  <aside class="auth-visual register-visual"><a routerLink="/" class="auth-brand"><span class="brand-glyph"><i class="fa-solid fa-droplet"></i></span><span class="brand-copy"><strong>SHINECRAFT</strong><small>Auto Spa</small></span></a><div class="auth-visual-copy"><span>Customer account</span><h1>Book faster. Track everything.</h1><p>Save your vehicles, manage appointments and keep every invoice and service record in one place.</p></div></aside>
+  <main class="auth-panel"><section class="auth-card auth-card-wide">
+    <div class="auth-card-top"><a routerLink="/" class="back-home"><i class="fa-solid fa-arrow-left"></i> Home</a><app-theme-toggle /></div>
+    <h2>Create account</h2><p>Use your real details so bookings do not drift into the void.</p>
+    @if (errorMessage()) { <div class="alert-box error">{{ errorMessage() }}</div> }
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="form-grid">
+        <div class="form-field"><label for="name">Full name</label><div class="input-wrap"><i class="fa-regular fa-user"></i><input id="name" class="form-control" formControlName="name" autocomplete="name" placeholder="Your full name"></div><app-form-error [control]="form.controls.name" label="Name" /></div>
+        <div class="form-field"><label for="phone">Phone number</label><div class="input-wrap"><i class="fa-solid fa-phone"></i><input id="phone" class="form-control" formControlName="phone" autocomplete="tel" placeholder="10-digit number"></div><app-form-error [control]="form.controls.phone" label="Phone number" /></div>
+      </div>
+      <div class="form-field"><label for="email">Email address</label><div class="input-wrap"><i class="fa-regular fa-envelope"></i><input id="email" class="form-control" type="email" formControlName="email" autocomplete="email" placeholder="you@example.com"></div><app-form-error [control]="form.controls.email" label="Email" /></div>
+      <div class="form-grid">
+        <div class="form-field"><label for="password">Password</label><div class="input-wrap"><i class="fa-solid fa-lock"></i><input id="password" class="form-control" [type]="showPassword() ? 'text' : 'password'" formControlName="password" autocomplete="new-password" placeholder="At least 8 characters"><button class="password-toggle" type="button" (click)="showPassword.set(!showPassword())"><i [class]="showPassword() ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'"></i></button></div><app-form-error [control]="form.controls.password" label="Password" /></div>
+        <div class="form-field"><label for="passwordConfirmation">Confirm password</label><div class="input-wrap"><i class="fa-solid fa-shield-halved"></i><input id="passwordConfirmation" class="form-control" [type]="showPassword() ? 'text' : 'password'" formControlName="passwordConfirmation" autocomplete="new-password" placeholder="Repeat password"></div><app-form-error [control]="form.controls.passwordConfirmation" label="Password confirmation" /></div>
+      </div>
+      <label class="check-row"><input type="checkbox" formControlName="agree"><span>I agree to the terms and privacy policy.</span></label><app-form-error [control]="form.controls.agree" label="Agreement" />
+      <button class="submit-btn" type="submit" [disabled]="submitting()">@if (submitting()) { <i class="fa-solid fa-spinner fa-spin"></i> Creating account... } @else { Create account <i class="fa-solid fa-arrow-right"></i> }</button>
+    </form>
+    <p class="auth-switch">Already registered? <a routerLink="/login">Sign in</a></p>
+  </section></main>
+</div>
